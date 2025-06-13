@@ -1,0 +1,11 @@
+repos:
+-   repo: local
+    hooks:
+    -   id: ruff
+        name: ruff
+        stages: [pre-commit]
+        language: system
+        entry: ruff check
+        types_or: [python]
+        exclude: "tests"
+        args: [ --fix ]

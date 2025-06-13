@@ -1,0 +1,112 @@
+[tool.poetry]
+name = "log_analyzer"
+version = "0.1.0" # managed by bump2version
+description = ""
+authors = ["Henrique de Sousa"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.12,<3.14"
+pyspark = "^4.0.0"
+streamlit = "^1.45.1"
+pandas = "^2.3.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.0"
+pre-commit = "^4.2.0"
+poetry2setup = "^1.1.0"
+bump-my-version = "^1.1.4"
+ruff = "^0.11.13"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+target-version = "py39"
+line-length = 88 # ruff default, same as black
+indent-width = 4 # ruff default, same as blac
+
+extend-select = [
+    "I", #isort
+]
+
+ignore = [
+    "F401", # Multiple imports on one line
+    "E501"
+]
+
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv", # all above are ruff default excludes
+]
+
+[tool.ruff.format]
+indent-style = "space" # ruff default and black alike
+quote-style = "double" # ruff default and black alike
+skip-magic-trailing-comma = false # ruff default and black alike
+line-ending = "auto" # ruff default and black alike
+
+[tool.ruff.lint]
+select = [
+    "E4", # ruff default
+    "E7", # ruff default
+    "E9", # ruff default
+    "F", # ruff default
+    "W", # pycodestyle warnings
+    "C901" # McCabe complexity
+]
+fixable = ["ALL"] # ruff default
+unfixable = [] # ruff default
+extend-select = ["E501"]
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$" # ruff default
+
+[tool.ruff.lint.mccabe]
+# Flag errors (`C901`) whenever the complexity level exceeds 10.
+max-complexity = 10
+
+[tool.bumpversion]
+current_version = "1.0.8"
+commit = true
+#commit_args = "--no-verify"
+tag = false
+tag_name = "v{new_version}"
+allow_dirty = false
+parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)"
+serialize = ["{major}.{minor}.{patch}"]
+message = "Bump version: {current_version} → {new_version}"
+#pre_commit_hooks = ["uv sync --upgrade", "git add uv.lock"]
+
+[[tool.bumpversion.files]]
+filename = "setup.py"
+
+[[tool.bumpversion.files]]
+filename = "README.md"
+search = "__{current_version}__"
+replace = "__{new_version}__"
+
+[[tool.bumpversion.files]]
+filename = "pyproject.toml"
+search = "{current_version}" # managed by bump2version
+replace = "{new_version}" # managed by bump2version
