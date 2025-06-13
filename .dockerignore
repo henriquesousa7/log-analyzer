@@ -1,0 +1,10 @@
+# ignorar historico do git
+.git
+.gitignore
+
+# ignorar arquivos de cache
+.pytest_cache
+.ruff_cache
+.cache
+__pycache__
+venv
