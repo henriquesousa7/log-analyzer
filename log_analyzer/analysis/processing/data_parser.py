@@ -1,3 +1,4 @@
+import os
 import logging
 
 from pyspark.sql import DataFrame
@@ -31,7 +32,7 @@ class DataParserHandler:
         self.input = input
         self.output = output
 
-    def read_bronze_layer(self, input_path: str, output_path: str) -> None:
+    def read_bronze_layer(self, input_path: os.PathLike, output_path: os.PathLike) -> None:
         """Transforma dados Raw em Bronze"""
         try:
             logging.info(f"Iniciando processamento da bronze")
@@ -51,7 +52,7 @@ class DataParserHandler:
             logging.info(f"Erro no processamento para bronze")
             raise
 
-    def transform_silver_data(self, input_path: str, output_path: str) -> None:
+    def transform_silver_data(self, input_path: os.PathLike, output_path: os.PathLike) -> None:
         """Transforma dados Bronze em Silver"""
         try:
             logging.info(f"Iniciando processamento da silver")
@@ -72,7 +73,7 @@ class DataParserHandler:
             logging.info(f"Erro no processamento para silver")
             raise
 
-    def acquire_gold_results(self, input_path: str, output_path: str) -> DataFrame:
+    def acquire_gold_results(self, input_path: os.PathLike, output_path: os.PathLike) -> DataFrame:
         """Transforma dados Silver em Gold"""
         try:
             logging.info(f"Iniciando processamento da gold")

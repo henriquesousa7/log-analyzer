@@ -1,3 +1,4 @@
+import os
 import logging
 from pyspark.sql import DataFrame
 
@@ -13,7 +14,7 @@ class DataInputHandler:
         """
         self.spark = spark
 
-    def read_txt(self, path):
+    def read_txt(self, path: os.PathLike):
         """
         Método unificado para leitura de dados de Texto
 
@@ -28,7 +29,7 @@ class DataInputHandler:
     
     def read_parquet(
         self,
-        path: str,
+        path: os.PathLike,
         format: str = "parquet",
         **read_options
     ) -> DataFrame:

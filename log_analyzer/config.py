@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 # Tabelas
 BRONZE_TABLE = os.getenv("BRONZE_TABLE")
@@ -10,6 +11,6 @@ PARQUETS_PATH = os.getenv("PARQUETS_PATH")
 LOG_PATH = os.getenv("LOG_PATH")
 
 # Caminhos com nomes das tabelas incluídos
-BRONZE_PATH = os.path.abspath(os.getenv("BRONZE_PATH", os.path.join(PARQUETS_PATH, "bronze", BRONZE_TABLE)))
-SILVER_PATH = os.path.abspath(os.getenv("SILVER_PATH", os.path.join(PARQUETS_PATH, "silver", SILVER_TABLE)))
-GOLD_PATH = os.path.abspath(os.getenv("GOLD_PATH", os.path.join(PARQUETS_PATH, "gold", GOLD_TABLE)))
+BRONZE_PATH = Path(os.getenv("BRONZE_PATH", PARQUETS_PATH / "bronze" / BRONZE_TABLE)).resolve()
+SILVER_PATH = Path(os.getenv("SILVER_PATH", PARQUETS_PATH / "silver" / SILVER_TABLE)).resolve()
+GOLD_PATH = Path(os.getenv("GOLD_PATH", PARQUETS_PATH / "gold" / GOLD_TABLE)).resolve()
