@@ -4,7 +4,7 @@ from setuptools import setup
 packages = \
 ['log_analyzer',
  'log_analyzer.analysis',
- 'log_analyzer.helpers',
+ 'log_analyzer.utils',
  'log_analyzer.ingest',
  'log_analyzer.visualization']
 
