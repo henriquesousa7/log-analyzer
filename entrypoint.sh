@@ -2,8 +2,8 @@
 set -e
 
 # run tests
-# echo "[entrypoint] Rodando testes com pytest..."
-# python -m pytest
+echo "[entrypoint] Rodando testes com pytest..."
+python -m pytest
 
 # echo "Testes concluídos com sucesso."
 

@@ -1,3 +1,6 @@
+# docker outputs
+data_outputs/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
