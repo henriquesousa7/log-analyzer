@@ -1,0 +1,17 @@
+services:
+  log-analyzer:
+    build:
+      context: .
+    volumes:
+      # Mapeia a pasta local './data_output' para '/app/data' dentro do container
+      # Assim, os arquivos escritos em /app/data no container aparecerão em ./data_output na sua máquina host.
+      - ./data_outputs:/app/data_outputs
+    env_file:
+      - config/values/analyzer.env
+    environment:
+      PYSPARK_PYTHON: python3  # Define o interpretador Python que o PySpark deve usar
+    image: log_analyzer
+    container_name: log-analyzer
+    ports:
+      - "8501:8501" # streamlit
+    command: ["/app/entrypoint.sh"]
