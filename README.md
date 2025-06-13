@@ -1,5 +1,5 @@
 # Log Analyzer
-> Last Version: __1.0.0__
+> Last Version: __1.0.1__
 
 ## Análise de Logs Web com Apache Spark
 
@@ -111,6 +111,8 @@ http://localhost:8501/
 
 ## Justificativa da Persistência
 
-Optou-se pelo uso do formato **Parquet** por ser colunar, compacto e altamente eficiente para análises com o Apache Spark. Essa escolha facilita futuras consultas e integrações com ferramentas analíticas, otimizando a leitura e o armazenamento dos dados processados a partir dos logs (Volume alto de dados, sendo baseado por n users e n timestamps).
+Optou-se pelo uso do formato **Parquet** por ser colunar, compacto e eficiente, ideal para o processamento de grandes volumes de dados com o Apache Spark. Essa escolha otimiza a leitura, o armazenamento e facilita consultas analíticas sobre os logs.
+
+Além disso, o uso do Parquet abre caminho para futuras implementações com Delta Lake, permitindo controle de versões, transações ACID e atualizações incrementais dos dados de forma robusta e escalável.
 
 ---

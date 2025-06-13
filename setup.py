@@ -16,9 +16,9 @@ install_requires = \
 
 setup_kwargs = {
     'name': 'log_analyzer',
-    'version': '1.0.0',
+    'version': '1.0.1',
     'description': '',
-    'long_description': '# Log Analyzer\n> Last Version: __1.0.0__',
+    'long_description': '# Log Analyzer\n> Last Version: __1.0.1__',
     'author': 'Henrique de Sousa',
     'author_email': 'None',
     'maintainer': 'None',
