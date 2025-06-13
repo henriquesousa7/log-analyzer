@@ -108,3 +108,9 @@ http://localhost:8501/
 ```
 
 ---
+
+## Justificativa da Persistência
+
+Optou-se pelo uso do formato **Parquet** por ser colunar, compacto e altamente eficiente para análises com o Apache Spark. Essa escolha facilita futuras consultas e integrações com ferramentas analíticas, otimizando a leitura e o armazenamento dos dados processados a partir dos logs (Volume alto de dados, sendo baseado por n users e n timestamps).
+
+---
