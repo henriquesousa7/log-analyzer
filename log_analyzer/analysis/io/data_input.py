@@ -1,5 +1,6 @@
 import os
 import logging
+from typing import Union
 from pyspark.sql import DataFrame
 
 class DataInputHandler:
@@ -14,7 +15,7 @@ class DataInputHandler:
         """
         self.spark = spark
 
-    def read_txt(self, path: os.PathLike):
+    def read_txt(self, path: Union[os.PathLike, str]):
         """
         Método unificado para leitura de dados de Texto
 
@@ -29,7 +30,7 @@ class DataInputHandler:
     
     def read_parquet(
         self,
-        path: os.PathLike,
+        path: Union[os.PathLike, str],
         format: str = "parquet",
         **read_options
     ) -> DataFrame:
