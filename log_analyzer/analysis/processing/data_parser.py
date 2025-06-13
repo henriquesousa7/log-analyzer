@@ -85,7 +85,8 @@ class DataParserHandler:
             
             self.output.save_as_parquet(
                 dataframe=final_gold_sdf,
-                output_path=output_path
+                output_path=output_path,
+                partition_by=["g_date"]
             )
 
             logging.info(f"Sucesso no processamento para gold: no Path {output_path}")
