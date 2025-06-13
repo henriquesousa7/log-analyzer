@@ -1,5 +1,5 @@
 # Log Analyzer
-> Last Version: __0.1.0__
+> Last Version: __1.0.0__
 
 ## Análise de Logs Web com Apache Spark
 

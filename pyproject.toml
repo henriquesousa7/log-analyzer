@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "log_analyzer"
-version = "0.1.0" # managed by bump2version
+version = "1.0.0" # managed by bump2version
 description = ""
 authors = ["Henrique de Sousa"]
 readme = "README.md"
@@ -87,7 +87,7 @@ dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$" # ruff default
 max-complexity = 10
 
 [tool.bumpversion]
-current_version = "0.1.0"
+current_version = "1.0.0"
 commit = true
 #commit_args = "--no-verify"
 tag = false
