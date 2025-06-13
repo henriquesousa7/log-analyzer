@@ -39,13 +39,18 @@ def test_extract_weekday_name(spark):
     assert weekdays == ["Monday", "Tuesday"]
 
 
-def test_basic_response_size_stats(spark):
-    data = [(100,), (200,), (50,)]
-    df = spark.createDataFrame(data, ["g_total_volume"])
+def test_basic_response_size_stats_multiple_columns(spark):
+    # Dados de teste com 4 colunas diferentes
+    data = [
+        Row(g_total_volume=100, g_max_volume=100, g_min_volume=100, g_avg_volume=100),
+        Row(g_total_volume=200, g_max_volume=200, g_min_volume=200, g_avg_volume=200),
+        Row(g_total_volume=300, g_max_volume=300, g_min_volume=300, g_avg_volume=300),
+    ]
+    df = spark.createDataFrame(data)
 
     result = basic_response_size_stats(df).collect()[0]
 
-    assert result["total_volume"] == 350
-    assert result["max_volume"] == 200
-    assert result["min_volume"] == 50
-    assert result["avg_volume"] == pytest.approx(116.66, rel=1e-2)
+    assert result["g_total_volume"] == 600
+    assert result["g_max_volume"] == 300
+    assert result["g_min_volume"] == 100
+    assert result["g_avg_volume"] == pytest.approx(200.0)

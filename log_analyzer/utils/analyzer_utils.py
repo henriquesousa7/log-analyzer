@@ -1,4 +1,5 @@
 import pyspark.sql.functions as F
+from typing import List
 from pyspark.sql import DataFrame
 
 def extract_only_static_resources(df: DataFrame, endpoint_col: str = "endpoint"):
@@ -21,7 +22,7 @@ def extract_weekday_name(df: DataFrame, date_col: str, alias: str = "weekday") -
     """
     return df.withColumn(alias, F.date_format(date_col, "EEEE"))
 
-def basic_response_size_stats(df: DataFrame, col_name: str = "g_total_volume") -> DataFrame:
+def basic_response_size_stats(df: DataFrame, cols_name: List[str] = ["g_total_volume", "g_max_volume", "g_min_volume", "g_avg_volume"]) -> DataFrame:
     """
     Retorna estatísticas básicas da coluna response_size.
 
@@ -30,8 +31,8 @@ def basic_response_size_stats(df: DataFrame, col_name: str = "g_total_volume") -
     :return: DataFrame com colunas: total, max, min, avg
     """
     return df.select(
-        F.sum(col_name).alias("total_volume"),
-        F.max(col_name).alias("max_volume"),
-        F.min(col_name).alias("min_volume"),
-        F.avg(col_name).alias("avg_volume")
+        F.sum(cols_name[0]).alias(cols_name[0]),
+        F.max(cols_name[1]).alias(cols_name[1]),
+        F.min(cols_name[2]).alias(cols_name[2]),
+        F.avg(cols_name[3]).alias(cols_name[3])
     )
