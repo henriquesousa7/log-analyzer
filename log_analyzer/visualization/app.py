@@ -19,10 +19,12 @@ def _get_spark_session() -> SparkSession:
 def _load_dataframes(spark: SparkSession) -> tuple[DataFrame, DataFrame]:
     """Carrega os DataFrames das camadas Silver e Gold."""
     input_handler = DataInputHandler(spark=spark)
-    silver_df = input_handler.read_parquet(path=SILVER_PATH)
-    gold_df = input_handler.read_parquet(path=GOLD_PATH)
+    silver_df = input_handler.read_parquet(path=SILVER_PATH).cache()
+    gold_df = input_handler.read_parquet(path=GOLD_PATH).cache()
+    
+    # force cache to next steps
+    silver_df.count(); gold_df.count()
     return silver_df, gold_df
-
 
 def render_dashboard(analyzer: DataAnalyzerHandler) -> None:
     """Renderiza os componentes do dashboard no Streamlit."""
@@ -54,9 +56,11 @@ def render_dashboard(analyzer: DataAnalyzerHandler) -> None:
 def main():
     try:
         spark = _get_spark_session()
-        silver_df, gold_df = _load_dataframes(spark)
-        analyzer = DataAnalyzerHandler(silver_df=silver_df, gold_df=gold_df)
-        render_dashboard(analyzer)
+        with st.spinner("Rodando a etapa de Load e Análise de dados."):
+            silver_df, gold_df = _load_dataframes(spark)
+            analyzer = DataAnalyzerHandler(silver_df=silver_df, gold_df=gold_df)
+
+            render_dashboard(analyzer)
     except Exception as e:
         st.error(f"Erro ao carregar o dashboard: {str(e)}")
 
