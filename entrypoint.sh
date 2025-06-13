@@ -2,8 +2,8 @@
 set -e
 
 # run tests
-# echo "[entrypoint] Rodando testes com pytest..."
-# python -m pytest
+echo "[entrypoint] Rodando testes com pytest..."
+python -m pytest
 
 # echo "Testes concluídos com sucesso."
 
@@ -25,4 +25,4 @@ echo "Processamento finalizado com sucesso."
 
 # echo "Iniciando Streamlit..."
 # Rodar Streamlit (supondo que seu app está em /app/web/app.py)
-python -m streamlit run /app/log_analyzer/visualization/app.py --server.port 8501 --server.enableCORS false
+python -m streamlit run /app/log_analyzer/visualization/app.py --server.port 8501

@@ -13,7 +13,7 @@ class DataOutputHandler:
 
     def save_as_parquet(
         self, dataframe,
-        output_path: os.PathLike,
+        output_path: Union[os.PathLike, str],
         mode="overwrite",
         partition_by: Optional[Union[str, List[str]]] = None,
         merge_schema: bool = False,
@@ -54,7 +54,7 @@ class DataOutputHandler:
             logging.error(f"Failed to write to {output_path}. Error: {str(error)}")
             raise
 
-    def _prepare_output_directory(self, path: os.PathLike):
+    def _prepare_output_directory(self, path: Union[os.PathLike, str]):
         """Ensures the target directory structure exists"""
         dir_path = os.path.dirname(path)
         if dir_path:

@@ -4,7 +4,7 @@ from setuptools import setup
 packages = \
 ['log_analyzer',
  'log_analyzer.analysis',
- 'log_analyzer.helpers',
+ 'log_analyzer.utils',
  'log_analyzer.ingest',
  'log_analyzer.visualization']
 
@@ -16,9 +16,9 @@ install_requires = \
 
 setup_kwargs = {
     'name': 'log_analyzer',
-    'version': '0.1.0',
+    'version': '1.0.0',
     'description': '',
-    'long_description': '# Log Analyzer\n> Last Version: __0.1.0__',
+    'long_description': '# Log Analyzer\n> Last Version: __1.0.0__',
     'author': 'Henrique de Sousa',
     'author_email': 'None',
     'maintainer': 'None',

@@ -17,6 +17,10 @@ def _get_spark_session() -> SparkSession:
         .appName("WebLogAnalysis")
         .getOrCreate()
     )
+
+    # INFO: Define o nível de log da aplicação Spark como "ERROR",
+    # ocultando mensagens de nível "INFO" e "WARN" que geralmente poluem o console.
+    # Isso ajuda a focar apenas em mensagens críticas de erro durante a execução.
     spark.sparkContext.setLogLevel("ERROR")
     return spark
 
@@ -37,7 +41,7 @@ def _run_pipeline(spark: SparkSession):
         parser.acquire_gold_results(input_path=SILVER_PATH, output_path=GOLD_PATH)
         logging.info("Pipeline finalizado")
     except Exception as e:
-        logging.error(f"Error: {str(e)}")
+        logging.error(f"Error: {e}")
         raise
 
 
@@ -47,7 +51,7 @@ def main():
         # Exec pipeline
         _run_pipeline(spark)
     except Exception as e:
-        logging.error(f"Falha no pipeline: {str(e)}")
+        logging.error(f"Falha no pipeline: {e}")
         raise
     finally:
         if spark:

@@ -36,8 +36,12 @@ class DataAnalyzerHandler:
 
     def most_error_day(self) -> DataFrame:
         """
-        Retorna o dia da semana com maior número de erros HTTP no intervalo informado.
+        Retorna o dia da semana com maior número de erros HTTP.
         Por padrão, analisa erros 4xx (cliente).
         """
         df_with_day = extract_weekday_name(self.gold_df, "g_date")
-        return df_with_day.groupBy("weekday").count().orderBy(F.col("count").desc()).limit(1)
+
+        df_with_day = df_with_day.filter(F.col("g_http_client_errors") > 0)
+        return df_with_day.groupBy("weekday").agg(
+            F.sum("g_http_client_errors").alias("count")
+        ).orderBy(F.col("count").desc()).limit(1)

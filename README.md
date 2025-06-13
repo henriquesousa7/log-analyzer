@@ -1,7 +1,7 @@
 # Log Analyzer
-> Last Version: __0.1.0__
+> Last Version: __1.0.0__
 
-## 📊 Análise de Logs Web com Apache Spark
+## Análise de Logs Web com Apache Spark
 
 Este projeto tem como objetivo processar e analisar logs de acesso a um servidor web utilizando **Apache Spark**, a fim de extrair informações relevantes sobre o comportamento dos usuários e o desempenho da infraestrutura.  
 
@@ -9,7 +9,7 @@ A solução é empacotada via **Docker** e **Docker Compose**, com os resultados
 
 ---
 
-## 🚀 Desafio Proposto
+## Desafio Proposto
 
 A análise dos logs responde às seguintes questões:
 
@@ -28,7 +28,7 @@ Os resultados são persistidos em **Parquet**, utilizando a Arquitetura de medal
 
 ---
 
-## ⚙️ Requisitos e Instalação
+## Requisitos e Instalação
 
 ### Pré-requisitos
 
@@ -48,7 +48,7 @@ cd web-log-analysis
 
 ---
 
-## 🧪 Como Executar o Projeto
+## Como Executar o Projeto
 
 ### 1. Construir as Imagens Docker
 
@@ -96,7 +96,7 @@ docker-compose down -v
 
 ---
 
-## 📈 Visualização de Dados com Streamlit
+## Visualização de Dados com Streamlit
 
 Após os steps de processamento e ingestão, uma aplicação **Streamlit** é iniciada para gerar dashboards interativos baseados no arquivo **JSON** exportado.  
 
@@ -106,5 +106,11 @@ A interface facilita a exploração dos dados de forma visual e acessível.
 ```
 http://localhost:8501/
 ```
+
+---
+
+## Justificativa da Persistência
+
+Optou-se pelo uso do formato **Parquet** por ser colunar, compacto e altamente eficiente para análises com o Apache Spark. Essa escolha facilita futuras consultas e integrações com ferramentas analíticas, otimizando a leitura e o armazenamento dos dados processados a partir dos logs (Volume alto de dados, sendo baseado por n users e n timestamps).
 
 ---

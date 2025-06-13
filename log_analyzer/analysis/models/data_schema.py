@@ -1,8 +1,8 @@
-from pyspark.sql.types import *
+from pyspark.sql.types import DateType, IntegerType, LongType, StringType, TimestampType, StructField, StructType
 
 class DataSchema:
     """Define os schemas para cada camada"""
-    
+
     @staticmethod
     def bronze_schema():
         return StructType([
@@ -14,7 +14,7 @@ class DataSchema:
             StructField("b_status_code", StringType(), False),
             StructField("b_response_size", StringType(), False),
         ])
-    
+
     @staticmethod
     def silver_schema():
         return StructType([
