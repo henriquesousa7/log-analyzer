@@ -2,8 +2,6 @@ import pyspark.sql.functions as F
 from pyspark.sql import DataFrame
 from pyspark.sql.window import Window
 
-from pyspark.sql import DataFrame
-import pyspark.sql.functions as F
 
 def _get_log_regexes():
     """

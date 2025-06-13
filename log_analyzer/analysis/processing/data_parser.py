@@ -35,27 +35,27 @@ class DataParserHandler:
     def read_bronze_layer(self, input_path: os.PathLike, output_path: os.PathLike) -> None:
         """Transforma dados Raw em Bronze"""
         try:
-            logging.info(f"Iniciando processamento da bronze")
+            logging.info("Iniciando processamento da bronze")
             sdf = self.input.read_txt(path=input_path)
             bronze_sdf = parse_to_bronze_layer(df=sdf)
 
             # Aplica o schema explicitamente
             final_bronze_sdf = _apply_explicit_schema(bronze_sdf, DataSchema.bronze_schema())
-            
+
             self.output.save_as_parquet(
                 dataframe=final_bronze_sdf,
                 output_path=output_path
             )
 
             logging.info(f"Sucesso no processamento para bronze: no Path {output_path}")
-        except Exception as e:
-            logging.info(f"Erro no processamento para bronze")
+        except Exception:
+            logging.info("Erro no processamento para bronze")
             raise
 
     def transform_silver_data(self, input_path: os.PathLike, output_path: os.PathLike) -> None:
         """Transforma dados Bronze em Silver"""
         try:
-            logging.info(f"Iniciando processamento da silver")
+            logging.info("Iniciando processamento da silver")
             sdf = self.input.read_parquet(path=input_path)
             silver_sdf = parse_to_silver_layer(df=sdf)
 
@@ -69,20 +69,20 @@ class DataParserHandler:
             )
 
             logging.info(f"Sucesso no processamento para silver: no Path {output_path}")
-        except Exception as e:
-            logging.info(f"Erro no processamento para silver")
+        except Exception:
+            logging.info("Erro no processamento para silver")
             raise
 
     def acquire_gold_results(self, input_path: os.PathLike, output_path: os.PathLike) -> DataFrame:
         """Transforma dados Silver em Gold"""
         try:
-            logging.info(f"Iniciando processamento da gold")
+            logging.info("Iniciando processamento da gold")
             sdf = self.input.read_parquet(path=input_path)
             gold_sdf = parse_to_gold_layer(sdf)
 
             # Aplica o schema explicitamente
             final_gold_sdf = _apply_explicit_schema(gold_sdf, DataSchema.gold_schema())
-            
+
             self.output.save_as_parquet(
                 dataframe=final_gold_sdf,
                 output_path=output_path,
@@ -90,8 +90,7 @@ class DataParserHandler:
             )
 
             logging.info(f"Sucesso no processamento para gold: no Path {output_path}")
-        except Exception as e:
-            logging.info(f"Erro no processamento para gold")
+        except Exception:
+            logging.info("Erro no processamento para gold")
             raise
-    
-    
+

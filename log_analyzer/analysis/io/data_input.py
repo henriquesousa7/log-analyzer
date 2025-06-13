@@ -5,11 +5,11 @@ from pyspark.sql import DataFrame
 
 class DataInputHandler:
     """Gerencia a leitura nas camadas Bronze, Silver e Gold"""
-    
+
     def __init__(self, spark):
         """
         Inicializa o gerenciador do data lake
-        
+
         Args:
             spark: Sessao Spark
         """
@@ -27,7 +27,7 @@ class DataInputHandler:
         """
         logging.info(f"Lendo arquivo de {path}")
         return self.spark.read.text(path)
-    
+
     def read_parquet(
         self,
         path: Union[os.PathLike, str],
@@ -36,12 +36,12 @@ class DataInputHandler:
     ) -> DataFrame:
         """
         Método unificado para leitura de dados Parquet
-        
+
         Args:
             path (str): Caminho para o arquivo Parquet.
             format (str): Formato de leitura dos dados. Valor padrão é 'parquet'.
             read_options: Opções adicionais para o Spark DataFrameReader.
-            
+
         Returns:
             DataFrame: DataFrame com os dados lidos
         """

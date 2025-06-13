@@ -40,7 +40,7 @@ class DataAnalyzerHandler:
         Por padrão, analisa erros 4xx (cliente).
         """
         df_with_day = extract_weekday_name(self.gold_df, "g_date")
-        
+
         df_with_day = df_with_day.filter(F.col("g_http_client_errors") > 0)
         return df_with_day.groupBy("weekday").agg(
             F.sum("g_http_client_errors").alias("count")
